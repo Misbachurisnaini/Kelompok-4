@@ -1,7 +1,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.vectorcoder.androidecommerce">
+    package="com.samauntung.samauntung_mobile">
 
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -19,7 +19,7 @@
 
 
     <application
-        android:name="com.vectorcoder.androidecommerce.app.App"
+        android:name="com.samauntung.samauntung_mobile.app.App"
         android:allowBackup="false"
         android:fullBackupContent="false"
         tools:replace="android:allowBackup"
@@ -34,7 +34,7 @@
 
 
         <activity
-            android:name="com.vectorcoder.androidecommerce.activities.SplashScreen"
+            android:name="com.samauntung.samauntung_mobile.activities.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/MySplashScreen" >
 
@@ -44,11 +44,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.vectorcoder.androidecommerce.activities.IntroScreen" >
+        <activity android:name="com.samauntung.samauntung_mobile.activities.IntroScreen" >
         </activity>
 
         <activity
-            android:name="com.vectorcoder.androidecommerce.activities.MainActivity"
+            android:name="com.samauntung.samauntung_mobile.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
@@ -61,14 +61,14 @@
         </activity>
 
         <activity
-            android:name="com.vectorcoder.androidecommerce.activities.Login"
+            android:name="com.samauntung.samauntung_mobile.activities.Login"
             android:label=".activities.Login"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
         </activity>
 
         <activity
-            android:name="com.vectorcoder.androidecommerce.activities.Signup"
+            android:name="com.samauntung.samauntung_mobile.activities.Signup"
             android:label=".activities.Signup"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
@@ -101,7 +101,7 @@
 
         <!-- Scheduled Notifications -->
 
-        <receiver android:name="com.vectorcoder.androidecommerce.receivers.AlarmReceiver"
+        <receiver android:name="com.samauntung.samauntung_mobile.receivers.AlarmReceiver"
                   android:enabled="false">
             <intent-filter>
                 <category android:name="android.intent.category.APP_MARKET" />
@@ -113,13 +113,13 @@
 
         <!-- Firebase Notifications -->
 
-        <service android:name="com.vectorcoder.androidecommerce.services.MyFirebaseMessagingService">
+        <service android:name="com.samauntung.samauntung_mobile.services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service android:name="com.vectorcoder.androidecommerce.services.MyFirebaseInstanceIDService">
+        <service android:name="com.samauntung.samauntung_mobile.services.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>

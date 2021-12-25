@@ -44,7 +44,7 @@ public class DB_Handler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
         // Drop older tables if existed
-        db.execSQL("DROP TABLE IF EXISTS " + User_Info_DB.TABLE_USER_INFO);
+        db.execSQL("DROP TABLE IF EXISTS " + User_Info_DB.customer);
         db.execSQL("DROP TABLE IF EXISTS " + User_Recents_DB.TABLE_RECENTS);
         db.execSQL("DROP TABLE IF EXISTS " + User_Cart_DB.TABLE_CART);
         db.execSQL("DROP TABLE IF EXISTS " + User_Cart_DB.TABLE_CART_ATTRIBUTES);

@@ -1,4 +1,4 @@
-package com.vectorcoder.androidecommerce.databases;
+package com.samauntung.samauntung_mobile.databases;
 
 import android.content.ContentValues;
 import android.database.Cursor;

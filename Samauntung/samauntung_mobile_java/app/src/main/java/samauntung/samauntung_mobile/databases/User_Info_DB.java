@@ -1,4 +1,4 @@
-package com.vectorcoder.androidecommerce.databases;
+package com.samauntung.samauntung_mobile.databases;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -16,19 +16,15 @@ public class User_Info_DB {
     SQLiteDatabase db;
 
     // Table Name
-    public static final String TABLE_USER_INFO = "User_Record";
+    public static final String customer = "customer";
     // Table Columns
-    public static final String CUSTOMERS_ID                      = "customers_id";
-    public static final String CUSTOMERS_FIRSTNAME               = "customers_firstname";
-    public static final String CUSTOMERS_LASTNAME                = "customers_lastname";
-    public static final String CUSTOMERS_EMAIL_ADDRESS           = "customers_email_address";
-    public static final String CUSTOMERS_PASSWORD                = "customers_password";
-    public static final String CUSTOMERS_DOB                     = "customers_dob";
-    public static final String CUSTOMERS_TELEPHONE               = "customers_telephone";
-    public static final String CUSTOMERS_FAX                     = "customers_fax";
-    public static final String CUSTOMERS_GENDER                  = "customers_gender";
-    public static final String CUSTOMERS_NEWSLETTER              = "customers_newsletter";
-    public static final String CUSTOMERS_PICTURE                 = "customers_picture";
+    public static final String id_customer                      = "id_customer";
+    public static final String username                         = "username";
+    public static final String nama                             = "nama";
+    public static final String email_cs                         = "email";
+    public static final String alamat                           = "alamat";
+    public static final Date date                               = "date_register";
+    public static final String foto                             = "foto";
 
 
 
@@ -37,19 +33,16 @@ public class User_Info_DB {
 
     public static String createTable() {
 
-        return "CREATE TABLE "+ TABLE_USER_INFO +
+        return "CREATE TABLE "+ customer +
                 "(" +
-                    CUSTOMERS_ID               +" TEXT," +
-                    CUSTOMERS_FIRSTNAME        +" TEXT," +
-                    CUSTOMERS_LASTNAME         +" TEXT," +
-                    CUSTOMERS_EMAIL_ADDRESS    +" TEXT," +
-                    CUSTOMERS_PASSWORD         +" TEXT," +
-                    CUSTOMERS_DOB              +" TEXT," +
-                    CUSTOMERS_TELEPHONE        +" TEXT," +
-                    CUSTOMERS_FAX              +" TEXT," +
-                    CUSTOMERS_GENDER           +" TEXT," +
-                    CUSTOMERS_NEWSLETTER       +" TEXT," +
-                    CUSTOMERS_PICTURE          +" TEXT" +
+                    id_customer      +" TEXT," +
+                    usename          +" TEXT," +
+                    nama             +" TEXT," +
+                    email_cs         +" TEXT," +
+                    alamat           +" TEXT," +
+                    date_register    +" DATE," +
+                    foto             +" IMAGE," +
+          
                 ")";
     }
 
@@ -63,19 +56,14 @@ public class User_Info_DB {
 
         ContentValues values = new ContentValues();
 
-        values.put(CUSTOMERS_ID,              user.getCustomersId());
-        values.put(CUSTOMERS_FIRSTNAME,       user.getCustomersFirstname());
-        values.put(CUSTOMERS_LASTNAME,        user.getCustomersLastname());
-        values.put(CUSTOMERS_EMAIL_ADDRESS,   user.getCustomersEmailAddress());
-        values.put(CUSTOMERS_PASSWORD,        user.getCustomersPassword());
-        values.put(CUSTOMERS_DOB,             user.getCustomersDob());
-        values.put(CUSTOMERS_TELEPHONE,       user.getCustomersTelephone());
-        values.put(CUSTOMERS_FAX,             user.getCustomersFax());
-        values.put(CUSTOMERS_GENDER,          user.getCustomersGender());
-        values.put(CUSTOMERS_NEWSLETTER,      user.getCustomersNewsletter());
-        values.put(CUSTOMERS_PICTURE,         user.getCustomersPicture());
+        values.put(id_customer,              user.getid_customer());
+        values.put(nama,                     user.getnama());
+        values.put(email_cs,                 user.getEmail());
+        values.put(alamat,                   user.getalamat());
+        values.put(date_register,            user.getdate_register());
+        values.put(foto,                     user.getfoto());
 
-        db.insert(TABLE_USER_INFO, null, values);
+        db.insert(customer, null, values);
 
         // close the Database
         DB_Manager.getInstance().closeDatabase();
@@ -89,24 +77,19 @@ public class User_Info_DB {
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         db = DB_Manager.getInstance().openDatabase();
 
-        Cursor cursor =  db.rawQuery( "SELECT * FROM "+ TABLE_USER_INFO +" WHERE "+ CUSTOMERS_ID +" =?", new String[] {userID});
+        Cursor cursor =  db.rawQuery( "SELECT * FROM "+ customer +" WHERE "+ id_customer +" =?", new String[] {userID});
 
         UserDetails userInfo = new UserDetails();
 
 
         if (cursor.moveToFirst()) {
             do {
-                userInfo.setCustomersId(cursor.getString(0));
-                userInfo.setCustomersFirstname(cursor.getString(1));
-                userInfo.setCustomersLastname(cursor.getString(2));
-                userInfo.setCustomersEmailAddress(cursor.getString(3));
-                userInfo.setCustomersPassword(cursor.getString(4));
-                userInfo.setCustomersDob(cursor.getString(5));
-                userInfo.setCustomersTelephone(cursor.getString(6));
-                userInfo.setCustomersFax(cursor.getString(7));
-                userInfo.setCustomersGender(cursor.getString(8));
-                userInfo.setCustomersNewsletter(cursor.getString(9));
-                userInfo.setCustomersPicture(cursor.getString(10));
+                userInfo.setId_customer(cursor.getString(0));
+                userInfo.setnama(cursor.getString(1));
+                userInfo.setemail_cs(cursor.getString(2));
+                userInfo.setalamat(cursor.getString(3));
+                userInfo.setdate_register(cursor.getDate(3));
+                userInfo.setfoto(cursor.getString(3));
 
             } while (cursor.moveToNext());
 
@@ -130,17 +113,11 @@ public class User_Info_DB {
 
         ContentValues values = new ContentValues();
 
-        values.put(CUSTOMERS_ID,              user.getCustomersId());
-        values.put(CUSTOMERS_FIRSTNAME,       user.getCustomersFirstname());
-        values.put(CUSTOMERS_LASTNAME,        user.getCustomersLastname());
-        values.put(CUSTOMERS_DOB,             user.getCustomersDob());
-        values.put(CUSTOMERS_TELEPHONE,       user.getCustomersTelephone());
-        values.put(CUSTOMERS_FAX,             user.getCustomersFax());
-        values.put(CUSTOMERS_GENDER,          user.getCustomersGender());
-        values.put(CUSTOMERS_NEWSLETTER,      user.getCustomersNewsletter());
-        values.put(CUSTOMERS_PICTURE,         user.getCustomersPicture());
+        values.put(id_customer, user.getid_customer());
+        values.put(nama, user.getnama());
+      
 
-        db.update(TABLE_USER_INFO, values, CUSTOMERS_EMAIL_ADDRESS +" = ?", new String[]{user.getCustomersEmailAddress()});
+        db.update(customer, values, email +" = ?", new String[]{user.getCustomersEmailAddress()});
 
         // close the Database
         DB_Manager.getInstance().closeDatabase();
@@ -156,9 +133,9 @@ public class User_Info_DB {
 
         ContentValues values = new ContentValues();
 
-        values.put(CUSTOMERS_PASSWORD,        user.getCustomersPassword());
+        values.put(password,  user.getCustomersPassword());
 
-        db.update(TABLE_USER_INFO, values, CUSTOMERS_ID +" = ?", new String[]{user.getCustomersId()});
+        db.update(customer, values, id_customer +" = ?", new String[]{user.getCustomersId()});
 
         // close the Database
         DB_Manager.getInstance().closeDatabase();
@@ -172,7 +149,7 @@ public class User_Info_DB {
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         db = DB_Manager.getInstance().openDatabase();
 
-        db.delete(TABLE_USER_INFO, CUSTOMERS_ID +" = ?", new String[] {userID});
+        db.delete(customer, id_customer +" = ?", new String[] {userID});
 
         // close the Database
         DB_Manager.getInstance().closeDatabase();
